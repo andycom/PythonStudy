@@ -1,0 +1,26 @@
+# coding:utf-8
+import os
+num = input("请输入一个整数：")
+num=int(num);
+path = r'D:\\data\\code\\vue\\'
+fns = [os.path.join(root, fn) for root, dirs, files in os.walk(path) for fn in files]
+outfile = open('D:\\data\\code\\code.txt', 'wb')
+linum = 1;
+for f in fns:
+    print("文件名称：" + f)
+    f1 = open(f, "r", encoding="utf-8")
+    lines = f1.readlines()
+    for line in lines:
+        linum=linum+1;
+        print (linum)
+        if(linum>=num):
+            break
+        if not len(line) or line == '\n':
+            continue
+        outfile.write(line.encode())
+    if (linum >= num):
+        break
+
+outfile.close()
+
+print("文件总数：" + len(fns))
